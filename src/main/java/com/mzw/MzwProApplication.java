@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
-@MapperScan(value = "")
+@MapperScan(value = "com.mzw.mapper")
 public class MzwProApplication {
 
     public static void main(String[] args) {
