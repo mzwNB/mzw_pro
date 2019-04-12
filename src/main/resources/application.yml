@@ -1,6 +1,6 @@
 server:
-  port: 8886
-  context-path: /mapper
+  port: 8888
+  context-path: /auctionManager
   jsp-servlet:
     init-parameters:
       development: true
@@ -12,10 +12,7 @@ spring:
     driver-class-name: oracle.jdbc.OracleDriver
     username: hr
     password: hr
-  mvc:
-    view:
-      prefix: /
-      suffix: .jsp
+
   http:
     encoding:
       charset: utf-8
@@ -24,5 +21,5 @@ spring:
     max-file-size: 1000MB
     max-request-size: 10000MB
 mybatis:
-  mapper-locations: classpath:com/baizhi/mapper/*Mapper.xml
+  mapper-locations: classpath:com/mzw/mapper/*Mapper.xml
   type-aliases-package: com.baizhi.entity

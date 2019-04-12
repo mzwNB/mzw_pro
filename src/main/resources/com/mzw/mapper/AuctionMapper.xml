@@ -70,7 +70,7 @@
             and t1.AUCTIONSTARTPRICE >#{query.queryPrice}
         </if>
     </select>
-    <resultMap id="auctionMap" type="com.baizhi.entity.Auction">
+    <resultMap id="auctionMap" type="com.mzw.entity.Auction">
          <result property="auctionId" column="auctionId"/>
          <result property="auctionName" column="auctionName"/>
          <result property="auctionStarPrice" column="auctionStartPrice"/>

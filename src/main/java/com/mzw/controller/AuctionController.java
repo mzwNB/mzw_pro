@@ -5,9 +5,9 @@ import com.mzw.entity.AuctionRecord;
 import com.mzw.entity.AutionQuery;
 import com.mzw.service.AuctionRecordService;
 import com.mzw.service.AuctionService;
-import org.apache.commons.io.FileUtils;
 import org.omg.PortableInterceptor.INACTIVE;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,7 +17,8 @@ import java.io.File;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-
+@Controller
+@RequestMapping("auction")
 public class AuctionController {
     @Autowired
     private AuctionService auctionService ;
@@ -28,7 +29,7 @@ public class AuctionController {
     private String selectAll(Map map, @RequestParam(defaultValue = "1")Integer pageIndex, @RequestParam(defaultValue = "6")Integer pageSize){
         List<Auction> list = auctionService.selectAll(pageIndex, pageSize, null);
         map.put("list",list);
-        return "auctionlist界面";
+        return "forward:/main/webapp/Regist.html";
     }
     @RequestMapping("selectOne")
     private String selectOne(Map map,Integer id){

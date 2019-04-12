@@ -5,14 +5,13 @@ import com.mzw.entity.Auction;
 import com.mzw.entity.AutionQuery;
 import com.mzw.service.AuctionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class AuctionServiceImpl implements AuctionService {
     @Autowired
     private AuctionDao auctionDao ;
-
-
 
     @Override
     public void insert(Auction auction) {

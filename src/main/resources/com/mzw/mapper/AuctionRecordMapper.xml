@@ -23,7 +23,7 @@
         ORDER BY t1.AUCTIONTIME DESC
     </select>
 
-    <resultMap  id="Record" type="com.baizhi.entity.AuctionRecord">
+    <resultMap  id="Record" type="com.mzw.entity.AuctionRecord">
            <result property="id" column="id"/>
            <result property="userId" column="userid"/>
            <result property="auctionId" column="auctionId"/>

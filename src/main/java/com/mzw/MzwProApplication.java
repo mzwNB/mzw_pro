@@ -1,11 +1,12 @@
 package com.mzw;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import tk.mybatis.spring.annotation.MapperScan;
+
 
 @SpringBootApplication
-@MapperScan(value = "com.mzw.mapper")
+@MapperScan(value = "com.mzw.dao")
 public class MzwProApplication {
 
     public static void main(String[] args) {

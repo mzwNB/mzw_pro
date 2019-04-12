@@ -12,7 +12,7 @@
 
 <mapper namespace="com.mzw.dao.UserDao">
 
-    <select id="selectOne" resultType="com.baizhi.entity.User">
+    <select id="selectOne" resultType="com.mzw.entity.User">
        SELECT * FROM  AUCTIONUSER WHERE USERNAME=#{username} AND USERPASSWORD=#{password}
     </select>
 
