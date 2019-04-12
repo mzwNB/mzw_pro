@@ -7436,7 +7436,8 @@ button.close {
 }
 
 .jumbotron p {
-	font-family: 'microsoft yahei', 'Helvetica', simhei, simsun, sans-serif color: #c7e7dc;
+	font-family: 'microsoft yahei', 'Helvetica', simhei, simsun, sans-serif ;
+	color: #c7e7dc;
 	margin-top: 15px;
 	margin-bottom: 15px;
 	font-size: 24px;
@@ -8322,5 +8323,5 @@ div.bsap a.adhere:hover {
 }
 
 .baidushare .bdsharebuttonbox {
-	margin-left: 10px!important
+	margin-left: 10px!important;
 }
