@@ -17,12 +17,12 @@ public class UserController{
     private UserService userService;
 
 
-    @ResponseBody
-    public Map  login(String username, String password, HttpSession session,String code){
-        Map map = new HashMap();
+    @RequestMapping("login")
+    public String  login(String username, String password, HttpSession session,String code){
 
 
-        return map;
+
+        return null;
     }
 
 }
