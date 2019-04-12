@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!--
+     namespace 写Dao接口
+     insert标签 添加  update标签更改   delete 删除
+     标签中写 sql语句
+-->
+
+<mapper namespace="com.mzw.dao.AuctionDao">
+    <insert id="insert">
+       insert into AUCTION (AUCTIONID, AUCTIONNAME, AUCTIONSTARTPRICE, AUCTIONUPSET, AUCTIONSTARTTIME, AUCTIONENDTIME, AUCTIONPIC, AUCTIONPICNEW, AUCTIONDESC)
+    values (SEQ_AUCTION.nextval,#{auctionName},#{auctionStarPrice},#{auctionUpset},#{auctionStarTime},#{auctionEndTime},#{auctionPic},#{auctionPicNew},#{auctionDesc})
+    </insert>
+
+    <update id="update">
+      UPDATE AUCTION SET AUCTIONNAME=#{auctionName},AUCTIONSTARTPRICE=#{auctionStarPrice},
+      AUCTIONUPSET=#{auctionUpset}, AUCTIONSTARTTIME=#{auctionStarTime}, AUCTIONENDTIME=#{auctionEndTime}, AUCTIONPIC=#{auctionPic},AUCTIONPICNEW=#{auctionPicNew} ,AUCTIONDESC=#{auctionDesc} WHERE AUCTIONID=#{auctionId}
+    </update>
+
+    <delete id="delete">
+     DELETE  FROM  AUCTION WHERE AUCTIONID =#{id}
+    </delete>
+
+    <select id="selectOne" resultMap="auctionMap">
+          SELECT * FROM  AUCTION WHERE AUCTIONID=#{id}
+    </select>
+    <select id="selectAll" resultMap="auctionMap">
+         SELECT * FROM (
+         SELECT t1.* ,rownum  r FROM AUCTION t1
+         WHERE 1=1
+        <if test="query!=null and query.queryName!=null and query.queryName!=''">
+            and t1.AUCTIONNAME LIKE '%'||#{query.queryName}||'%'
+        </if>
+        <if test="query!=null and query.queryDescr!=null and query.queryDescr!=''">
+            and t1.AUCTIONDESC LIKE  '%'||#{query.queryDescr}||'%'
+        </if>
+        <if test="query!=null and query.queryStarTime!=null and query.queryStarTime!=''">
+            and t1.AUCTIONSTARTTIME > #{query.queryStarTime}
+        </if>
+        <if test="query!=null and query.queryEndTime!=null and query.queryEndTime!=''">
+            and t1.AUCTIONENDTIME &lt; #{query.queryEndTime}
+        </if>
+        <if test="query!=null and query.queryPrice!=null and query.queryPrice!=''">
+            and t1.AUCTIONSTARTPRICE >#{query.queryPrice}
+        </if>
+
+         )t2
+         WHERE t2.r BETWEEN #{star} AND #{end}
+    </select>
+    <select id="selectNumber" resultType="int">
+          select COUNT(*) FROM  AUCTION t1
+          WHERE 1=1
+        <if test="query!=null and query.queryName!=null and query.queryName!=''">
+            and t1.AUCTIONNAME LIKE '%'||#{query.queryName}||'%'
+         </if>
+        <if test="query!=null and query.queryDescr!=null and query.queryDescr!=''">
+            and t1.AUCTIONDESC LIKE  '%'||#{query.queryDescr}||'%'
+        </if>
+        <if test="query!=null and query.queryStarTime!=null and query.queryStarTime!=''">
+            and t1.AUCTIONSTARTTIME > #{query.queryStarTime}
+        </if>
+        <if test="query!=null and query.queryEndTime!=null and query.queryEndTime!=''">
+            and t1.AUCTIONENDTIME &lt; #{query.queryEndTime}
+        </if>
+        <if test="query!=null and query.queryPrice!=null and query.queryPrice!=''">
+            and t1.AUCTIONSTARTPRICE >#{query.queryPrice}
+        </if>
+    </select>
+    <resultMap id="auctionMap" type="com.baizhi.entity.Auction">
+         <result property="auctionId" column="auctionId"/>
+         <result property="auctionName" column="auctionName"/>
+         <result property="auctionStarPrice" column="auctionStartPrice"/>
+         <result property="auctionUpset" column="auctionUpset"/>
+         <result property="auctionStarTime" column="auctionStartTime"/>
+         <result property="auctionEndTime" column="auctionEndTime"/>
+         <result property="auctionPic" column="auctionPic"/>
+         <result property="auctionPicNew" column="auctionPicNew"/>
+         <result property="auctionDesc" column="auctionDesc"/>
+    </resultMap>
+
+</mapper>

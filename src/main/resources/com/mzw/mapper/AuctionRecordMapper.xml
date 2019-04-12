@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!--
+     namespace 写Dao接口
+     insert标签 添加  update标签更改   delete 删除
+     标签中写 sql语句
+-->
+
+<mapper namespace="com.mzw.dao.AuctionRecordDao">
+    <insert id="insert">
+     insert into AUCTIONRECORD (ID, USERID, AUCTIONID,AUCTIONTIME, AUCTIONPRICE) values (SEQ_RECORD.nextval,#{userId},#{auctionId},sysdate,#{auctionPrice})
+    </insert>
+
+    <select id="selectAllRecord" resultMap="Record">
+        SELECT  t1.*,t2.USERNAME FROM  AUCTIONRECORD t1
+        LEFT JOIN  AUCTIONUSER t2
+        ON t1.USERID = t2.USERID
+        WHERE t1.AUCTIONID=#{id}
+        ORDER BY t1.AUCTIONTIME DESC
+    </select>
+
+    <resultMap  id="Record" type="com.baizhi.entity.AuctionRecord">
+           <result property="id" column="id"/>
+           <result property="userId" column="userid"/>
+           <result property="auctionId" column="auctionId"/>
+           <result property="auctionTime" column="auctonTime"/>
+           <result property="auctionPrice" column="auctionPrice"/>
+           <result property="username" column="username"/>
+    </resultMap>
+
+</mapper>
